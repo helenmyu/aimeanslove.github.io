@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Jane | Wellness, GenAI & Culture</title>
+    <style>
+        /* === COPIED GLOBAL STYLES === */
+        :root { --primary: #5E8B7E; --secondary: #2F5D62; --accent: #A7C4BC; --light: #DFEEEA; --text: #333; --white: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: var(--text); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        nav { background: var(--light); padding: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav ul { display: flex; justify-content: center; list-style: none; gap: 2rem; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: var(--secondary); font-weight: 500; padding: 0.5rem 1rem; transition: all 0.3s; }
+        nav a:hover { color: var(--primary); text-decoration: underline; }
+        footer { text-align: center; padding: 2rem; background: var(--secondary); color: var(--white); margin-top: 3rem; }
+        
+        /* === PAGE-SPECIFIC STYLES === */
+        .bio-section { padding: 4rem 0; }
+        .bio-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 3rem; 
+            margin-top: 2rem;
+        }
+        .bio-card { 
+            background: var(--white); 
+            padding: 2rem; 
+            border-radius: 10px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .bio-card h2 { color: var(--primary); margin-bottom: 1rem; }
+        .profile-img { 
+            width: 100%; 
+            border-radius: 10px; 
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .bio-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+   		<li><a href="resources.html">Resources</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bio-section">
+        <div class="container">
+            <h1>About Jane</h1>
+            <div class="bio-grid">
+                <div class="bio-card">
+                    <img src="assets/images/profile.jpg" alt="Helen Yu" class="profile-img">
+                    <h2>My Journey</h2>
+                    <p>As a lifelong learner and passionate educator with 15 years of experience in diverse fields across finance, technology and wellness, and recent intrigue with GenAI, I hope to demystify and bridge the latest in these domains. My multicultural background informs my unique approach to holistic development.</p>
+                </div>
+                <div class="bio-card">
+                    <h2>Philosophy</h2>
+                    <p>I believe in:</p>
+                    <ul style="margin-top: 1rem; margin-left: 1.5rem;">
+                        <li>Integrating technology with human-centered values</li>
+                        <li>Cultural awareness as the foundation for meaningful connections</li>
+                        <li>Lifelong learning as a path to empowerment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Jane Doe. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
