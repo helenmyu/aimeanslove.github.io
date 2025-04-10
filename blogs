@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <style>
+    /* Basic styling (customize later) */
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+    .filter-controls { margin: 20px 0; padding: 10px; background: #f5f5f5; }
+    .blog-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; }
+    .topic-genAI { border-left: 4px solid #4CAF50; } /* Green for genAI */
+    .topic-health { border-left: 4px solid #2196F3; } /* Blue for health */
+    .topic-culture { border-left: 4px solid #9C27B0; } /* Purple for culture */
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>My Blog</h1>
+  
+  <!-- Filter Controls -->
+  <div class="filter-controls">
+    <h3>Filter Posts:</h3>
+    <div>
+      <strong>By Topic:</strong>
+      <button onclick="filterPosts('all')">All</button>
+      <button onclick="filterPosts('genAI')">genAI</button>
+      <button onclick="filterPosts('health')">Health</button>
+      <button onclick="filterPosts('culture')">Culture</button>
+    </div>
+    <div style="margin-top: 10px;">
+      <strong>By Date:</strong>
+      <input type="date" id="dateFilter" onchange="filterByDate()">
+      <button onclick="clearDateFilter()">Clear</button>
+    </div>
+  </div>
+
+  <!-- Blog List -->
+  <div id="blog-list">
+    <!-- Blog cards will be dynamically inserted here by JavaScript -->
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Sample blog data (replace with your actual posts)
+    const blogPosts = [
+      { 
+        title: "How AI is Changing Creativity", 
+        date: "2024-05-20", 
+        topic: "genAI", 
+        summary: "Exploring the impact of generative AI on art and writing.",
+        url: "/blogs/2024-05-20-genAI-post.html"
+      },
+      { 
+        title: "10 Tips for Better Sleep", 
+        date: "2024-05-21", 
+        topic: "health", 
+        summary: "Science-backed methods to improve your sleep quality.",
+        url: "/blogs/2024-05-21-health-post.html"
+      },
+      { 
+        title: "The Rise of Digital Nomads", 
+        date: "2024-05-22", 
+        topic: "culture", 
+        summary: "How remote work is reshaping global cultures.",
+        url: "/blogs/2024-05-22-culture-post.html"
+      }
+    ];
+
+    // Initialize the blog list
+    function renderBlogs(posts = blogPosts) {
+      const blogList = document.getElementById('blog-list');
+      blogList.innerHTML = posts.map(post => `
+        <div class="blog-card topic-${post.topic}">
+          <h3><a href="${post.url}">${post.title}</a></h3>
+          <small>${post.date} • ${post.topic}</small>
+          <p>${post.summary}</p>
+        </div>
+      `).join('');
+    }
+
+    // Filter by topic
+    function filterPosts(topic) {
+      const filteredPosts = topic === 'all' 
+        ? blogPosts 
+        : blogPosts.filter(post => post.topic === topic);
+      renderBlogs(filteredPosts);
+    }
+
+    // Filter by date
+    function filterByDate() {
+      const date = document.getElementById('dateFilter').value;
+      if (!date) return;
+      const filteredPosts = blogPosts.filter(post => post.date === date);
+      renderBlogs(filteredPosts);
+    }
+
+    // Clear date filter
+    function clearDateFilter() {
+      document.getElementById('dateFilter').value = '';
+      renderBlogs();
+    }
+
+    // Load blogs on page load
+    window.onload = renderBlogs;
+  </script>
+</body>
+</html>
