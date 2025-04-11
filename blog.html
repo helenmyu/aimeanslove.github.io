@@ -1,132 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog | Your Name</title>
     <style>
+        /* Consistent with index.html styling */
         :root {
-            --primary: #5E8B7E;   --secondary: #2F5D62;
-            --accent: #A7C4BC;    --light: #DFEEEA;
-            --text: #333;         --white: #fff;
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #2ecc71;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6; color: var(--text); 
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background-color: #f9f9f9;
         }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        nav { background: var(--light); padding: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        nav ul { display: flex; justify-content: center; list-style: none; gap: 2rem; flex-wrap: wrap; }
-        nav a { text-decoration: none; color: var(--secondary); font-weight: 500; padding: 0.5rem 1rem; transition: all 0.3s; }
-        nav a:hover { color: var(--primary); text-decoration: underline; }
-        .hero { 
-            text-align: center; padding: 8rem 0; 
-            background: linear-gradient(rgba(223,238,234,0.9), rgba(223,238,234,0.9)), 
-                        url('assets/images/hero-bg.jpg') center/cover; 
+        
+        header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 0;
+            margin-bottom: 2rem;
         }
-        h1 { font-size: 3rem; color: var(--secondary); margin-bottom: 1rem; }
-        .tagline { font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem; }
-        .welcome-message { 
-            max-width: 800px; margin: 2rem auto; background: var(--white); 
-            padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        footer { text-align: center; padding: 2rem; background: var(--secondary); color: var(--white); margin-top: 3rem; }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+        
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .blog-excerpt {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: var(--primary-color);
+            font-weight: 500;
+            text-decoration: none;
+        }
+        
+        .sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            margin-top: 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+        
+        .categories {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .categories li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .categories a {
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .categories a:hover {
+            color: var(--primary-color);
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+        
         @media (max-width: 768px) {
-            nav ul { gap: 1rem; } 
-            .hero { padding: 5rem 1rem; }
-            h1 { font-size: 2.2rem; }
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-  <h1>My Blog</h1>
-  
-  <!-- Filter Controls -->
-  <div class="filter-controls">
-    <h3>Filter Posts:</h3>
-    <div>
-      <strong>By Topic:</strong>
-      <button onclick="filterPosts('all')">All</button>
-      <button onclick="filterPosts('genAI')">genAI</button>
-      <button onclick="filterPosts('health')">Health</button>
-      <button onclick="filterPosts('culture')">Culture</button>
-    </div>
-    <div style="margin-top: 10px;">
-      <strong>By Date:</strong>
-      <input type="date" id="dateFilter" onchange="filterByDate()">
-      <button onclick="clearDateFilter()">Clear</button>
-    </div>
-  </div>
-
-  <!-- Blog List -->
-  <div id="blog-list">
-    <!-- Blog cards will be dynamically inserted here by JavaScript -->
-  </div>
-
-  <!-- JavaScript -->
-  <script>
-    // Sample blog data (replace with your actual posts)
-    const blogPosts = [
-      { 
-        title: "How AI is Changing Creativity", 
-        date: "2024-05-20", 
-        topic: "genAI", 
-        summary: "Exploring the impact of generative AI on art and writing.",
-        url: "/blogs/2024-05-20-genAI-post.html"
-      },
-      { 
-        title: "10 Tips for Better Sleep", 
-        date: "2024-05-21", 
-        topic: "health", 
-        summary: "Science-backed methods to improve your sleep quality.",
-        url: "/blogs/2024-05-21-health-post.html"
-      },
-      { 
-        title: "The Rise of Digital Nomads", 
-        date: "2024-05-22", 
-        topic: "culture", 
-        summary: "How remote work is reshaping global cultures.",
-        url: "/blogs/2024-05-22-culture-post.html"
-      }
-    ];
-
-    // Initialize the blog list
-    function renderBlogs(posts = blogPosts) {
-      const blogList = document.getElementById('blog-list');
-      blogList.innerHTML = posts.map(post => `
-        <div class="blog-card topic-${post.topic}">
-          <h3><a href="${post.url}">${post.title}</a></h3>
-          <small>${post.date} • ${post.topic}</small>
-          <p>${post.summary}</p>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">YourName</div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-      `).join('');
-    }
+    </header>
 
-    // Filter by topic
-    function filterPosts(topic) {
-      const filteredPosts = topic === 'all' 
-        ? blogPosts 
-        : blogPosts.filter(post => post.topic === topic);
-      renderBlogs(filteredPosts);
-    }
+    <main class="container">
+        <h1>Latest Articles</h1>
+        
+        <div class="blog-container">
+            <div class="blog-posts">
+                <!-- Blog Post 1 -->
+                <article class="blog-card">
+                    <img src="images/blog1.jpg" alt="AI Technology">
+                    <div class="blog-content">
+                        <div class="blog-date">June 15, 2024 | GenAI</div>
+                        <h2 class="blog-title">How AI is Revolutionizing Content Creation</h2>
+                        <p class="blog-excerpt">Discover how tools like DeepSeek and VEED.io are changing the way we produce digital content...</p>
+                        <a href="blogs/genAI/ai-content-creation.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 2 -->
+                <article class="blog-card">
+                    <img src="images/blog2.jpg" alt="H5P Technology">
+                    <div class="blog-content">
+                        <div class="blog-date">June 10, 2024 | EdTech</div>
+                        <h2 class="blog-title">Creating Interactive Quizzes with H5P</h2>
+                        <p class="blog-excerpt">A step-by-step guide to building engaging learning experiences with H5P in Moodle...</p>
+                        <a href="blogs/edtech/h5p-guide.html" class="read-more">Read More</a>
+                    </div>
+                </article>
+                
+                <!-- Blog Post 3 -->
+                <article class="blog-card">
+                    <img src="images/blog3.jpg" alt="Web Development">
+                    <div class="blog-date">June 5, 2024 | Web Dev</div>
+                    <h2 class="blog-title">Building Your First GitHub Pages Site</h2>
+                    <p class="blog-excerpt">From zero to deployment: How to create a professional blog using GitHub Pages...</p>
+                    <a href="blogs/webdev/github-pages.html" class="read-more">Read More</a>
+                </article>
+            </div>
+            
+            <aside class="sidebar">
+                <h3>Search</h3>
+                <input type="text" class="search-bar" placeholder="Search articles...">
+                
+                <h3>Categories</h3>
+                <ul class="categories">
+                    <li><a href="blog.html?category=genAI">Generative AI</a></li>
+                    <li><a href="blog.html?category=edtech">EdTech</a></li>
+                    <li><a href="blog.html?category=webdev">Web Development</a></li>
+                    <li><a href="blog.html?category=culture">Culture</a></li>
+                </ul>
+                
+                <h3>Popular Posts</h3>
+                <ul class="categories">
+                    <li><a href="blogs/genAI/ai-content-creation.html">AI Content Creation</a></li>
+                    <li><a href="blogs/edtech/h5p-guide.html">H5P Guide</a></li>
+                </ul>
+            </aside>
+        </div>
+    </main>
 
-    // Filter by date
-    function filterByDate() {
-      const date = document.getElementById('dateFilter').value;
-      if (!date) return;
-      const filteredPosts = blogPosts.filter(post => post.date === date);
-      renderBlogs(filteredPosts);
-    }
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#">Twitter</a> | <a href="#">LinkedIn</a> | <a href="#">GitHub</a>
+        </div>
+    </footer>
 
-    // Clear date filter
-    function clearDateFilter() {
-      document.getElementById('dateFilter').value = '';
-      renderBlogs();
-    }
-
-    // Load blogs on page load
-    window.onload = renderBlogs;
-  </script>
+    <script>
+        // Simple category filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            
+            if (category) {
+                document.querySelectorAll('.blog-card').forEach(card => {
+                    if (!card.querySelector('.blog-date').textContent.includes(category)) {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Highlight active category
+                document.querySelectorAll('.categories a').forEach(link => {
+                    if (link.textContent.toLowerCase() === category.toLowerCase()) {
+                        link.style.fontWeight = 'bold';
+                        link.style.color = 'var(--primary-color)';
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
