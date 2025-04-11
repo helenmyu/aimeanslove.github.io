@@ -4,16 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Blog</title>
-  <style>
-    /* Basic styling (customize later) */
-    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-    .filter-controls { margin: 20px 0; padding: 10px; background: #f5f5f5; }
-    .blog-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; }
-    .topic-genAI { border-left: 4px solid #4CAF50; } /* Green for genAI */
-    .topic-health { border-left: 4px solid #2196F3; } /* Blue for health */
-    .topic-culture { border-left: 4px solid #9C27B0; } /* Purple for culture */
-    .hidden { display: none; }
-  </style>
+    <style>
+        :root {
+            --primary: #5E8B7E;   --secondary: #2F5D62;
+            --accent: #A7C4BC;    --light: #DFEEEA;
+            --text: #333;         --white: #fff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6; color: var(--text); 
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        nav { background: var(--light); padding: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        nav ul { display: flex; justify-content: center; list-style: none; gap: 2rem; flex-wrap: wrap; }
+        nav a { text-decoration: none; color: var(--secondary); font-weight: 500; padding: 0.5rem 1rem; transition: all 0.3s; }
+        nav a:hover { color: var(--primary); text-decoration: underline; }
+        .hero { 
+            text-align: center; padding: 8rem 0; 
+            background: linear-gradient(rgba(223,238,234,0.9), rgba(223,238,234,0.9)), 
+                        url('assets/images/hero-bg.jpg') center/cover; 
+        }
+        h1 { font-size: 3rem; color: var(--secondary); margin-bottom: 1rem; }
+        .tagline { font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem; }
+        .welcome-message { 
+            max-width: 800px; margin: 2rem auto; background: var(--white); 
+            padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        footer { text-align: center; padding: 2rem; background: var(--secondary); color: var(--white); margin-top: 3rem; }
+        @media (max-width: 768px) {
+            nav ul { gap: 1rem; } 
+            .hero { padding: 5rem 1rem; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
 <body>
   <h1>My Blog</h1>
