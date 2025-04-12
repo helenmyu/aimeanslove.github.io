@@ -1,70 +1,485 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Helen | Wellness, Technology & Culture</title>
-    <style>
-        :root {
-            --primary: #5E8B7E;   --secondary: #2F5D62;
-            --accent: #A7C4BC;    --light: #DFEEEA;
-            --text: #333;         --white: #fff;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6; color: var(--text); 
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        nav { background: var(--light); padding: 1.5rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        nav ul { display: flex; justify-content: center; list-style: none; gap: 2rem; flex-wrap: wrap; }
-        nav a { text-decoration: none; color: var(--secondary); font-weight: 500; padding: 0.5rem 1rem; transition: all 0.3s; }
-        nav a:hover { color: var(--primary); text-decoration: underline; }
-        .hero { 
-            text-align: center; padding: 8rem 0; 
-            background: linear-gradient(rgba(223,238,234,0.9), rgba(223,238,234,0.9)), 
-                        url('assets/images/hero-bg.jpg') center/cover; 
-        }
-        h1 { font-size: 3rem; color: var(--secondary); margin-bottom: 1rem; }
-        .tagline { font-size: 1.5rem; color: var(--primary); margin-bottom: 2rem; }
-        .welcome-message { 
-            max-width: 800px; margin: 2rem auto; background: var(--white); 
-            padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        footer { text-align: center; padding: 2rem; background: var(--secondary); color: var(--white); margin-top: 3rem; }
-        @media (max-width: 768px) {
-            nav ul { gap: 1rem; } 
-            .hero { padding: 5rem 1rem; }
-            h1 { font-size: 2.2rem; }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GenAI Narratives | Where Tech Meets Tea Breaks</title>
+  <style>
+    :root {
+      --gradient-1: #FF9A9E;
+      --gradient-2: #FAD0C4;
+      --gradient-3: #A18CD1;
+      --dark: #2E2E3A;
+      --light: #F9F9F9;
+      --accent: #FFD166;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Poppins:wght@400;600&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--dark);
+      background: var(--light);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite, float 6s ease-in-out infinite;
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .gradient-bg::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd' opacity='0.2'%3E%3Cg fill='%23FFFFFF' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      animation: float 8s ease-in-out infinite reverse;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      animation: fadeInDown 0.8s ease-out;
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      letter-spacing: -1px;
+      transition: transform 0.3s;
+    }
+    
+    .logo:hover {
+      transform: rotate(-5deg) scale(1.05);
+      color: var(--accent);
+    }
+    
+    nav a {
+      margin-left: 2rem;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: all 0.3s;
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s;
+    }
+    
+    nav a:hover {
+      color: var(--accent);
+    }
+    
+    nav a:hover::after {
+      width: 100%;
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 6rem 0 8rem;
+      color: white;
+      position: relative;
+    }
+    
+    .hero h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 4.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      animation: fadeInUp 0.8s ease-out 0.3s forwards;
+      opacity: 0;
+    }
+    
+    .hero p {
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      line-height: 1.8;
+      font-weight: 400;
+      animation: fadeInUp 0.8s ease-out 0.5s forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .cta-button {
+      display: inline-block;
+      background-color: white;
+      color: var(--gradient-1);
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.3rem;
+      transition: all 0.3s;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border: none;
+      cursor: pointer;
+      animation: fadeInUp 0.8s ease-out 0.7s forwards;
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: rgba(255,255,255,0.5);
+      opacity: 0;
+      border-radius: 100%;
+      transform: scale(1, 1) translate(-50%);
+      transform-origin: 50% 50%;
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+      color: var(--gradient-3);
+    }
+    
+    .cta-button:hover::after {
+      animation: ripple 1s ease-out;
+    }
+    
+    @keyframes ripple {
+      0% {
+        transform: scale(0, 0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(20, 20);
+        opacity: 0;
+      }
+    }
+    
+    .content-section {
+      padding: 6rem 0;
+    }
+    
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 5rem;
+      color: var(--dark);
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-3));
+      border-radius: 2px;
+      animation: stretch 1.5s ease-out infinite alternate;
+    }
+    
+    @keyframes stretch {
+      0% { width: 100%; }
+      100% { width: 110%; margin-left: -5%; }
+    }
+    
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      transform-style: preserve-3d;
+    }
+    
+    .card:hover {
+      transform: translateY(-15px) scale(1.02) rotate(1deg);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    }
+    
+    .card:hover .card-img {
+      transform: scale(1.1);
+    }
+    
+    .card-img {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.4s ease-out;
+    }
+    
+    .card-content {
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .card h3 {
+      font-family: 'Montserrat', sans-serif;
+      margin-top: 0;
+      color: var(--gradient-3);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+    
+    .card:hover h3 {
+      color: var(--accent);
+    }
+    
+    .card p {
+      color: var(--dark);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      transition: color 0.3s;
+    }
+    
+    .card:hover p {
+      color: white;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: -1;
+      border-radius: 15px;
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 4rem 0;
+      margin-top: 3rem;
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+      animation: fadeIn 1s ease-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      position: relative;
+    }
+    
+    .footer-links a::after {
+      content: '•';
+      position: absolute;
+      right: -1.8rem;
+      opacity: 0.5;
+    }
+    
+    .footer-links a:last-child::after {
+      display: none;
+    }
+    
+    .footer-links a:hover {
+      color: var(--accent);
+      transform: translateY(-3px);
+    }
+    
+    .copyright {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    
+    .fun-fact {
+      display: inline-block;
+      background-color: var(--accent);
+      color: var(--dark);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-top: 2rem;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      nav a {
+        margin-left: 1.5rem;
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-   		<li><a href="resources.html">Resources</a></li>
-            </ul>
+  <div class="gradient-bg">
+    <div class="container">
+      <header>
+        <div class="logo">GenAI Narratives</div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/blog">Blog</a>
+          <a href="/resources">Resources</a>
+          <a href="/about">About</a>
+        </nav>
+      </header>
+      
+      <section class="hero">
+        <h1>When AI Meets Coffee Breaks</h1>
+        <p>Exploring how generative AI is changing education, one hilarious mishap and "aha!" moment at a time. Because let's face it - even robots need a good laugh sometimes.</p>
+        <a href="/blog" class="cta-button">Read My AI Adventures</a>
+      </section>
+    </div>
+  </div>
+  
+  <div class="container">
+    <section class="content-section">
+      <h2 class="section-title">My AI Misadventures</h2>
+      
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="card-content">
+            <h3>AI in Classrooms</h3>
+            <p>That time I asked an AI to generate a history quiz and it included questions about the "Great Emu War of 2035." Turns out, even algorithms have creative writing days.</p>
+          </div>
         </div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            <h1> An oasis for those who seek wisdom </h1>
-            <p class="tagline"> By Helen Yu </p>
-            <div class="welcome-message">
-                <p>“There is only one way to learn... It's through action. Everything you need to know you have learned through your journey.” -- The Alchemist </p>
-            </div>
+        
+        <div class="card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="card-content">
+            <h3>Mindful Technology</h3>
+            <p>How I taught an AI to meditate (sort of). Spoiler: It kept suggesting "404 Peace Not Found" as a mantra. We're working on its spiritual side.</p>
+          </div>
         </div>
+        
+        <div class="card">
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1452421822248-d4c2b47f0c81?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+          <div class="card-content">
+            <h3>Cultural Bridges</h3>
+            <p>The day my translation AI turned "I love dumplings" into "I am a dumpling" in Cantonese. Delicious misunderstanding or existential crisis? You decide.</p>
+          </div>
+        </div>
+      </div>
     </section>
-
-    <footer>
-        <div class="container">
-            <p>© 2024 HelenMYu. All rights reserved.</p>
-        </div>
-    </footer>
+  </div>
+  
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="/resources">Resources</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <p class="copyright">© 2023 GenAI Narratives. Making tech education fun, one dad joke at a time.</p>
+      <div class="fun-fact">Fun Fact: This page has more animations than my students during Monday morning lectures</div>
+    </div>
+  </footer>
 </body>
 </html>
